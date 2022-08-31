@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block title %}
+Badge Out gadget
+{% endblock %}
+{% block content %}
+<!-- <div class="container"> -->
+    <div class="title bg-white pt-2" style="display: flex;">
+        <div class="menu text-dark" id="btn">
+            <i class="fas fa-bars    "></i>
+        </div>
+        <h5 class="text-left" style="font-weight: 600; margin-left: 10px;">BADGE OUT STAFF</h5>
+        <p class="text-right" style="margin-left: 60%;">
+          <img src="https://www.svgrepo.com/show/311063/person.svg" width="30" height="30" alt="">
+          {{username}}
+        </p>
+    </div>
+
+    
+      
+<!-- </div> -->
+<!-- register personal gadget -->
+<!-- <right> -->
+  
+<!-- </right> -->
+    
+    <div class="register">
+      <h5 class="text-left" style="font-weight: 600; margin-left: 10px;"></h5>
+      <!-- <a href="{% url 'badgedoutstaff' %}?username={{username}}&gate={{gate}}" style="float: right; font-size: 12px;" class="btn btn-primary m-2">View list</a> -->
+      <div class="row mt-3">
+        <!-- <div class="pages mt-2" style="padding-left: 45%;">
+          {% if staff.has_previous %}
+        
+            <a class="btn btn-primary" style="height: 35px; font-size: 12px;" href="?page=1&username={{username}}&gate={{gate}}">&laquo;</a>
+            <a class="btn btn-primary" style="height: 35px; font-size: 12px;" href="?page={{staff.previous_page_number}}&username={{username}}&gate={{gate}}">Previous</a>
+          {% endif %}
+          <span style="font-size: 12px;">Pages {{staff.number}} of {{staff.paginator.num_pages}}</span>
+          {% if staff.has_next %}
+            <a class="btn btn-primary" style="height: 35px; font-size: 12px;" href="?page={{staff.next_page_number}}&username={{username}}&gate={{gate}}">next</a>
+            <a class="btn btn-primary" style="height: 35px; font-size: 12px;" href="?page={{staff.paginator.num_pages}}&username={{username}}&gate={{gate}}">&raquo;</a>
+          {% endif %}
+        </div> -->
+        <div class="col-6 ">
+          <div class="header p-1" style="display: flex; justify-content: space-between;">
+            <h6 class="text-uppercase"><b>Badge Out Bank Gadget</b></h6>
+            <input type="text" class="form-control" id="search" placeholder="Search here .........." onkeyup="searchfunction()" style="width: 200px;">
+          </div>
+          <div class="p-3 rounded mr-2 shadow">
+            
+            <table class="table mt-3" id="product-table">
+              <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Employee ID</th>
+                    <th>Bank Gadget</th>
+                    <th>Serial Number</th>
+                    <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="body">
+                  {% for result in staff_bank %}
+                    {% if result.bank_gadget %}
+
+                    <tr style="font-size: 13px;" class="product">
+                      <td scope="row">{{result.id}}</td>
+                      <td><h6>{{result.employee_ID}}</h6></td>
+                      <td>{{result.bank_gadget}}</td>
+                      <td>{{result.bank_gadget_SN}}</td>
+                      <td class="text-center">
+                          <a href="delete_bin_staff_bank/{{result.id}}/?username={{username}}&gate={{gate}}" class="btn btn-danger" style="font-size: 12px;">Badge Out</a>
+                      </td>
+                    </tr>
+
+                    {% endif %}
+                  {%endfor%}
+              </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="header p-1" style="display: flex; justify-content: space-between;">
+            <h6 class="text-uppercase"><b>Badge Out Personal Gadget</b></h6>
+            <input type="text" class="form-control" id="search2" placeholder="Search here .........." onkeyup="search()" style="width: 200px;">
+          </div>
+          <!-- <hr width="250"> -->
+          <div class="p-3  rounded shadow">
+            <table class="table mt-3" id="product-table2">
+              <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Employee ID</th>
+                    <th>Personal Gadget</th>
+                    <th>Serial Number</th>
+                    <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="body2">
+                  {% for result in staff_personal %}
+                    <!-- {% if result.personal_gadget %} -->
+                    <tr style="font-size: 13px;" class="product2">
+                      <td scope="row">{{result.id}}</td>
+                      <td><h6>{{result.employee_ID}}</h6></td>
+                      <td>{{result.personal_gadget}}</td>
+                      <td>{{result.serial_number}}</td>
+                      <td class="text-center">
+                          <a href="delete_bin_staff_personal/{{result.id}}/?username={{username}}&gate={{gate}}" class="btn btn-danger" style="font-size: 12px;">Badge Out</a>
+                      </td>
+                    </tr>
+                    <!-- {% endif %} -->
+                  {%endfor%}
+              </tbody>
+          </table>
+          </div>
+        </div>
+          
+  
+      </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'script1.js '%}"></script>
+{% endblock%}
